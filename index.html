@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login Anggota Keluarga Besar KNait</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('image3.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+        }
+        .login-container h2 {
+            color: #2c3e50;
+        }
+        .logo {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 2px;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            font-size: 14px;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-btn:hover {
+            background-color: #2980b9;
+        }
+        .footer {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+    <script>
+        function loginUser(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            
+            const storedUser = localStorage.getItem("registeredUser");
+            
+            if (storedUser) {
+                const userData = JSON.parse(storedUser);
+                
+                if (userData.email === email && userData.password === password) {
+                    alert("Login berhasil!");
+                    window.location.href = "bio.html";
+                } else {
+                    alert("Email atau password salah!");
+                }
+            } else {
+                alert("Belum ada akun terdaftar, silakan daftar terlebih dahulu.");
+                window.location.href = "register.html";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <img src="jp2.png" alt="Logo" class="logo">
+        <h3>Login Akun </h3>
+        <form onsubmit="loginUser(event)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Masukkan Email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan Password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        
+        <div class="footer">
+            <p>Belum punya akun? <a href="register.html">Daftar disini</a></p>
+        </div>
+    </div>
+</body>
+</html>
